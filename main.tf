@@ -105,6 +105,8 @@ resource "azurerm_linux_virtual_machine" "mtc_vm" {
   network_interface_ids = [azurerm_network_interface.mtc_nic.id]
   zone                  = "2"
 
+  custom_data = filebase64("customdata.tpl")
+
   admin_ssh_key {
     username   = "adminuser"
     public_key = file("~/.ssh/mtcazurekey.pub")
@@ -117,8 +119,8 @@ resource "azurerm_linux_virtual_machine" "mtc_vm" {
 
   source_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    offer     = "0001-com-ubuntu-server-focal"
+    sku       = "20_04-lts"
     version   = "latest"
   }
 
