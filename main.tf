@@ -43,7 +43,7 @@ resource "azurerm_network_security_group" "mtc_nsg" {
   location            = azurerm_resource_group.mtc_rg.location
 
   tags = {
-    "environment" = "dev"
+    environment = "dev"
   }
 }
 
@@ -64,4 +64,15 @@ resource "azurerm_network_security_rule" "mtc_dev_rule" {
 resource "azurerm_subnet_network_security_group_association" "mtc_nsga" {
   subnet_id                 = azurerm_subnet.mtc_subnet.id
   network_security_group_id = azurerm_network_security_group.mtc_nsg.id
+}
+
+resource "azurerm_public_ip" "mtc_ip" {
+  name                = "mtc_ip"
+  allocation_method   = "Dynamic"
+  resource_group_name = azurerm_resource_group.mtc_rg.name
+  location            = azurerm_resource_group.mtc_rg.location
+
+  tags = {
+    environment = "dev"
+  }
 }
