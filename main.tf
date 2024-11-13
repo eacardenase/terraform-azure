@@ -60,3 +60,8 @@ resource "azurerm_network_security_rule" "mtc_dev_rule" {
   resource_group_name         = azurerm_resource_group.mtc_rg.name
   network_security_group_name = azurerm_network_security_group.mtc_nsg.name
 }
+
+resource "azurerm_subnet_network_security_group_association" "mtc_nsga" {
+  subnet_id                 = azurerm_subnet.mtc_subnet.id
+  network_security_group_id = azurerm_network_security_group.mtc_nsg.id
+}
