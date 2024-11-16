@@ -137,3 +137,8 @@ resource "azurerm_linux_virtual_machine" "mtc_vm" {
     environment = "dev"
   }
 }
+
+data "azurerm_public_ip" "mtc_ip_data" {
+  name                = azurerm_public_ip.mtc_ip.name
+  resource_group_name = azurerm_public_ip.mtc_ip.resource_group_name
+}
