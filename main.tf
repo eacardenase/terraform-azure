@@ -130,7 +130,7 @@ resource "azurerm_linux_virtual_machine" "mtc_vm" {
       user         = "adminuser"
       identityfile = "~/.ssh/mtcazurekey"
     })
-    interpreter = ["bash", "-c"]
+    interpreter = var.host_os == "linux" ? ["bash", "-c"] : ["Powershell", "-Command"]
   }
 
   tags = {
