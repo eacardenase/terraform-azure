@@ -125,7 +125,7 @@ resource "azurerm_linux_virtual_machine" "mtc_vm" {
   }
 
   provisioner "local-exec" {
-    command = templatefile("linux-ssh-script.tpl", {
+    command = templatefile("${var.host_os}-ssh-script.tpl", {
       hostname     = self.public_ip_address
       user         = "adminuser"
       identityfile = "~/.ssh/mtcazurekey"
